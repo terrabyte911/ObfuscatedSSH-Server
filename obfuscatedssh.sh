@@ -38,7 +38,8 @@ echo "ObfuscatedPort $port" | cat - /etc/ssh/sshd_ofc_config > temp && mv temp /
 
 #finally, run it and set it to self-starting. If no error occurred, run "netstat -an", then you might see sshd_ofc binding to the port 1234
 /usr/sbin/sshd_ofc -f /etc/ssh/sshd_ofc_config
+sed -i -e '$i /usr/sbin/sshd_ofc -f /etc/ssh/sshd_ofc_config' /etc/rc.local
 
-echo "/usr/sbin/sshd_ofc -f /etc/ssh/sshd_ofc_config" > /etc/init.d/ssh_ofc
-chmod +x /etc/init.d/ssh_ofc
-update-rc.d ssh_ofc defaults
+#echo "/usr/sbin/sshd_ofc -f /etc/ssh/sshd_ofc_config" > /etc/init.d/ssh_ofc
+#chmod +x /etc/init.d/ssh_ofc
+#update-rc.d ssh_ofc defaults
